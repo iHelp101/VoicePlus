@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="settings_enabled"
+        android:title="@string/settings_enable_toggle"
+        android:defaultValue="false"
+        android:persistent="true"
+        android:disableDependentsState="false"/>
+
+    <com.ihelp101.voiceminus.ui.AccountListPreferences
+        android:dependency="settings_enabled"
+        android:key="account"
+        android:title="@string/account"
+        android:persistent="true"/>
+
+    <EditTextPreference
+        android:dependency="settings_enabled"
+        android:key="settings_incoming_prefix"
+        android:title="@string/settings_incoming_prefix"
+        android:defaultValue="@string/empty"
+        android:persistent="true"/>
+
+    <EditTextPreference
+        android:dependency="settings_enabled"
+        android:key="settings_incoming_suffix"
+        android:title="@string/settings_incoming_suffix"
+        android:defaultValue="@string/empty"
+        android:persistent="true"/>
+
+    <PreferenceCategory
+        android:title="Sync">
+        <Preference android:layout="@layout/sync_summary"/>
+
+        <ListPreference
+                android:dependency="settings_enabled"
+                android:key="settings_polling_frequency"
+                android:title="@string/settings_polling_frequency"
+                android:entries="@array/polling_frequency_choices"
+                android:entryValues="@array/polling_frequency_values"
+                android:defaultValue="@string/default_polling_frequency"
+                android:summary="Sync after time has elapsed."
+                android:persistent="true"/>
+
+        <CheckBoxPreference
+            android:dependency="settings_enabled"
+            android:key="settings_sync_on_receive"
+            android:title="Sync on receive"
+            android:summary="Sync when a message arrives"
+            android:defaultValue="false"
+            android:persistent="true"/>
+
+        <CheckBoxPreference
+            android:dependency="settings_enabled"
+            android:key="settings_sync_on_send"
+            android:title="Sync on send"
+            android:summary="Sync after sending a message"
+            android:defaultValue="false"
+            android:persistent="true"/>
+
+        <CheckBoxPreference
+                android:dependency="settings_enabled"
+                android:key="settings_sync_on_boot"
+                android:title="Sync on boot"
+                android:summary="Sync after boot"
+                android:defaultValue="false"
+                android:persistent="true"/>
+    </PreferenceCategory>
+<!--    
+    <SwitchPreference 
+        android:dependency="settings_enabled"
+        android:key="settings_propagate_delete"
+        android:title="@string/settings_propagate_delete"
+        android:summaryOn="@string/settings_propagate_delete_summary_on"
+        android:summaryOff="@string/settings_propagate_delete_summary_off"
+        android:defaultValue="false"
+        android:persistent="true"/>
+-->
+</PreferenceScreen>
